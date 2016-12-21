@@ -1,7 +1,7 @@
-# zappa
-Docker image for Zappa, based on the official Amazon Linux image
+# Zappa
+Docker image for Zappa, based on the [Lambda Docker Image](https://github.com/lambci/docker-lambda)
 
-* Alias for building projects with compatible Libc libraries
+* Alias it to easily build and deploy Zappa projects, using Lambda compatible Libc libraries (No more ELF errors)
 ```bash
-$ alias zappa='docker run -v $(pwd):/code --rm danielwhatmuff/zappa'
+$ alias zappa='docker run -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION -v $(pwd):/var/task --entrypoint zappa --rm danielwhatmuff/zappa'
 ```
