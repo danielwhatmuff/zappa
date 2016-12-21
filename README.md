@@ -4,4 +4,6 @@ Docker image for Zappa, based on the [Lambda Docker Image](https://github.com/la
 * Alias it to easily build and deploy Zappa projects, using Lambda compatible Libc libraries (No more ELF errors)
 ```bash
 $ alias zappa='docker run -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION -v $(pwd):/var/task --entrypoint zappa --rm danielwhatmuff/zappa'
+$ cd yourzappaproject
+$ zappa deploy
 ```
