@@ -2,10 +2,18 @@ FROM lambci/lambda:build
 
 MAINTAINER "Daniel Whatmuff" <danielwhatmuff@gmail.com>
 
+COPY yum.conf /etc/yum.conf
+
 RUN yum clean all && \
-    yum -y install python27-pip python27-dev python27-virtualenv vim mysql mysql-devel gcc && \
-    pip install -U pip zappa mysql-python awscli
+    yum -y install python27-pip python27-devel python27-virtualenv vim mysql mysql-devel gcc && \
+    pip install -U pip && \
+    pip install -U zappa mysql-python awscli
 
 WORKDIR /var/task
+
+RUN virtualenv /var/venv && \
+    source /var/venv/bin/activate
+
+COPY bashrc /root/.bashrc
 
 CMD ["zappa"]
