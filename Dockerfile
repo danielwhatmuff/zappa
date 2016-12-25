@@ -5,7 +5,7 @@ MAINTAINER "Daniel Whatmuff" <danielwhatmuff@gmail.com>
 COPY yum.conf /etc/yum.conf
 
 RUN yum clean all && \
-    yum -y install python27-pip python27-devel python27-virtualenv vim mysql mysql-devel gcc && \
+    yum -y install python27-pip python27-devel python27-virtualenv vim postgresql mysql mysql-devel gcc && \
     pip install -U pip && \
     pip install -U zappa mysql-python awscli
 
