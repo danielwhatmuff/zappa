@@ -14,3 +14,10 @@ zappashell> source yourvirtualenv/bin/activate
 zappashell> pip install -r requirements.txt
 zappashell> zappa deploy
 ```
+
+# Known Issues
+* On Mac - if you leave the Docker daemon running for too long, you will get time drift and zappa commands will fail with the below types of errors (so will AWS CLI commands) - to fix, just restart the daemon
+```
+Error: No Lambda ... detected in ... - have you deployed yet?
+Warning! Couldn't get function ... in ... - have you deployed yet?
+```
