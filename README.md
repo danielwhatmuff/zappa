@@ -1,5 +1,5 @@
 # Zappa
-Docker image for Zappa, based on the [Lambda Docker Image](https://github.com/lambci/docker-lambda)
+Docker image for [Zappa](https://github.com/Miserlou/Zappa), based on the [Lambda Docker Image](https://github.com/lambci/docker-lambda)
 
 * Requires Docker to be installed and running :whale2: [Docker Install](https://docs.docker.com/engine/installation/)
 * Alias it to easily build and deploy Zappa projects, using Lambda compatible Libc libraries (No more ELF errors)
