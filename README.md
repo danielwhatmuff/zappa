@@ -35,7 +35,7 @@ role_arn = arn:aws:iam::ACCOUNTNUMBER:role/YourCrossAccountAssumableRole
 ```
 * Mount the config into the container and set AWS_PROFILE
 ```
-$ alias zappashell='docker run -ti -e AWS_PROFILE=$AWS_PROFILE -e -v $(pwd):/var/task -v ~/.aws/:/root/.aws  --rm zappa bash'
+$ alias zappashell='docker run -ti -e AWS_PROFILE=$AWS_PROFILE -v $(pwd):/var/task -v ~/.aws/:/root/.aws  --rm zappa bash'
 zappashell> source yourvirtualenv/bin/activate
 zappashell> pip install -r requirements.txt
 zappashell> zappa deploy
