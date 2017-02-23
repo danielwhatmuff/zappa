@@ -12,7 +12,9 @@ RUN yum clean all && \
 WORKDIR /var/task
 
 RUN virtualenv /var/venv && \
-    source /var/venv/bin/activate
+    source /var/venv/bin/activate && \
+    pip install -U pip && \
+    deactivate
 
 COPY bashrc /root/.bashrc
 
