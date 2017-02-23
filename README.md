@@ -13,7 +13,7 @@ $ git clone git@github.com:danielwhatmuff/zappa.git && cd zappa && docker build 
 
 ## Or pull the image from Docker Hub
 ```bash
-$ docker pull danielwhatmuff/zappa
+$ docker pull danielwhatmuff/zappa:1.0.0
 ```
 
 ## Using exported AWS_DEFAULT_REGION, AWS_SECRET_ACCESS_KEY and AWS_ACCESS_KEY_ID env vars
