@@ -48,7 +48,10 @@ $ export AWS_PROFILE=myprofile
 ```
 * Mount the code and config into the container
 ```
-$ alias zappashell='docker run -ti -e AWS_PROFILE=$AWS_PROFILE -e -v $(pwd):/var/task -v ~/.aws/:/root/.aws  --rm zappa bash'
+$ alias zappashell='docker run -ti -e AWS_PROFILE=$AWS_PROFILE -v $(pwd):/var/task -v ~/.aws/:/root/.aws  --rm zappa bash'
+zappashell> source yourvirtualenv/bin/activate
+zappashell> pip install -r requirements.txt
+zappashell> zappa deploy
 ```
 
 ## Known Issues
