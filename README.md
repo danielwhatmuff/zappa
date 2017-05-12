@@ -11,9 +11,17 @@ Docker image for [Zappa](https://github.com/Miserlou/Zappa), based on the [Lambd
 $ git clone git@github.com:danielwhatmuff/zappa.git && cd zappa && docker build -t zappa .
 ```
 
+## Build a customized image with extra build deps
+```
+# Add extra installs to the Dockerfile.update file, then run:
+$ docker build --build-arg version=< zappa version > -t danielwhatmuff/zappa:< zappa version > -f Dockerfile.update .
+# e.g.
+$ docker build --build-arg version=0.38.1 -t danielwhatmuff/zappa:0.38.1 -f Dockerfile.update .
+```
+
 ## Or pull the image from Docker Hub
 ```bash
-$ docker pull danielwhatmuff/zappa:1.0.0
+$ docker pull danielwhatmuff/zappa
 ```
 
 ## Using exported AWS_DEFAULT_REGION, AWS_SECRET_ACCESS_KEY and AWS_ACCESS_KEY_ID env vars
