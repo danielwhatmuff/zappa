@@ -3,11 +3,20 @@ Docker image for [Zappa](https://github.com/Miserlou/Zappa), based on the [Lambd
 
 * Requires Docker to be installed and running :whale2: [Docker Install](https://docs.docker.com/engine/installation/)
 * Alias it to easily build and deploy Zappa projects, using Lambda compatible Libc libraries (No more ELF errors)
-* Ensure you have the AWS API env vars set for access key, secret key and default region (or use credential/config files)
+* Ensure you have the AWS API env vars set for access key, secret key and default region (or use AWS credential/config files)
+* Source a pre-created virtual environment located at /var/venv or create your own persistent one within /var/task/ once in the container.
 
 ## Build the image
 ```bash
 $ git clone git@github.com:danielwhatmuff/zappa.git && cd zappa && docker build -t danielwhatmuff/zappa .
+```
+
+## Build a customized image with extra build deps
+```
+# Add extra installs to the Dockerfile.update file, then run:
+$ docker build --build-arg version=< zappa version > -t danielwhatmuff/zappa:< zappa version > -f Dockerfile.update .
+# e.g.
+$ docker build --build-arg version=0.38.1 -t danielwhatmuff/zappa:0.38.1 -f Dockerfile.update .
 ```
 
 ## Or pull the image from Docker Hub
@@ -21,9 +30,17 @@ $ alias zappashell='docker run -ti -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_K
 $ alias >> ~/.bash_profile
 $ cd yourzappaproject
 $ zappashell
-zappashell> source yourvirtualenv/bin/activate
+# Create a persistent virtualenv within the mounted volume and activate it
+zappashell> virtualenv venv 
+zappashell> source venv/bin/activate
+# OR use the prebaked one...
+zappashell> source /var/venv/bin/activate
+# Install your requirements
 zappashell> pip install -r requirements.txt
+# Deploy the thing
 zappashell> zappa deploy
+# Update the thing
+zappashell> zappa update
 ```
 
 ## Using cross account IAM role from CLI config ~/.aws/credentials or ~/.aws/config
@@ -33,9 +50,13 @@ zappashell> zappa deploy
 region = ap-southeast-2
 role_arn = arn:aws:iam::ACCOUNTNUMBER:role/YourCrossAccountAssumableRole
 ```
-* Mount the config into the container and set AWS_PROFILE
+* Export the AWS_PROFILE to the profile name myprofile
 ```
-$ alias zappashell='docker run -ti -e AWS_PROFILE=$AWS_PROFILE -e -v $(pwd):/var/task -v ~/.aws/:/root/.aws  --rm danielwhatmuff/zappa bash'
+$ export AWS_PROFILE=myprofile
+```
+* Mount the code and config into the container
+```
+$ alias zappashell='docker run -ti -e AWS_PROFILE=$AWS_PROFILE -v $(pwd):/var/task -v ~/.aws/:/root/.aws  --rm danielwhatmuff/zappa bash'
 zappashell> source yourvirtualenv/bin/activate
 zappashell> pip install -r requirements.txt
 zappashell> zappa deploy
