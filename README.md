@@ -7,7 +7,7 @@ Docker image for [Zappa](https://github.com/Miserlou/Zappa), based on the [Lambd
 
 ## Build the image
 ```bash
-$ git clone git@github.com:danielwhatmuff/zappa.git && cd zappa && docker build -t zappa .
+$ git clone git@github.com:danielwhatmuff/zappa.git && cd zappa && docker build -t danielwhatmuff/zappa .
 ```
 
 ## Or pull the image from Docker Hub
@@ -17,7 +17,7 @@ $ docker pull danielwhatmuff/zappa
 
 ## Using exported AWS_DEFAULT_REGION, AWS_SECRET_ACCESS_KEY and AWS_ACCESS_KEY_ID env vars
 ```
-$ alias zappashell='docker run -ti -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION -v $(pwd):/var/task  --rm zappa bash'
+$ alias zappashell='docker run -ti -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION -v $(pwd):/var/task  --rm danielwhatmuff/zappa bash'
 $ alias >> ~/.bash_profile
 $ cd yourzappaproject
 $ zappashell
@@ -35,7 +35,7 @@ role_arn = arn:aws:iam::ACCOUNTNUMBER:role/YourCrossAccountAssumableRole
 ```
 * Mount the config into the container and set AWS_PROFILE
 ```
-$ alias zappashell='docker run -ti -e AWS_PROFILE=$AWS_PROFILE -e -v $(pwd):/var/task -v ~/.aws/:/root/.aws  --rm zappa bash'
+$ alias zappashell='docker run -ti -e AWS_PROFILE=$AWS_PROFILE -e -v $(pwd):/var/task -v ~/.aws/:/root/.aws  --rm danielwhatmuff/zappa bash'
 zappashell> source yourvirtualenv/bin/activate
 zappashell> pip install -r requirements.txt
 zappashell> zappa deploy
