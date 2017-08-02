@@ -8,6 +8,9 @@ ENV PYTHONPATH /var/task:/var/task/source
 
 RUN pip install -U zappa==${version}
 
+RUN yum clean all && \
+    yum install geoip-devel -y
+
 # Add your extra requirements here e.g. postgres-devel 
 # RUN yum install -y yourpackages
 
