@@ -68,3 +68,9 @@ zappashell> zappa deploy
 Error: No Lambda ... detected in ... - have you deployed yet?
 Warning! Couldn't get function ... in ... - have you deployed yet?
 ```
+* Yum installs can timeout due to latency between you and the default repository, override to your local AWS region using
+```
+# Find your region code here - http://docs.aws.amazon.com/general/latest/gr/rande.html
+$ docker build --build-arg region=ap-southeast-2 -t danielwhatmuff/zappa:< zappa version > -f Dockerfile .
+```
+
